@@ -323,8 +323,24 @@
       if (v.firma.trim()) lines.push(`Firma: ${v.firma.trim()}`);
       lines.push(`E-posta: ${v.eposta.trim()}`);
       if (v.tel.trim()) lines.push(`Telefon: ${v.tel.trim()}`);
-      if (status) status.textContent = 'E-posta uygulamanız açılıyor… Açılmazsa info@ascelik.com adresine doğrudan yazabilirsiniz.';
-      window.location.href = `mailto:info@ascelik.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+      const href = `mailto:info@ascelik.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+      const plain = `Konu: ${subject}\n\n${lines.join('\n')}`;
+      if (status) status.textContent = 'Mesajınız e-posta uygulamanızda açılıyor.';
+      const done = $('.form__done', form);
+      if (done) {
+        done.hidden = false;
+        $('[data-mail-again]', done).href = href;
+        const copyBtn = $('[data-copy-msg]', done);
+        copyBtn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(plain);
+            copyBtn.textContent = 'Kopyalandı ✓';
+          } catch (_) {
+            copyBtn.textContent = 'Kopyalanamadı';
+          }
+        };
+      }
+      window.location.href = href;
     });
   }
 

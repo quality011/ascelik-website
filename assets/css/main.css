@@ -338,7 +338,8 @@ main:focus { outline: none; }
 
 .history { margin-top: clamp(72px, 9vw, 140px); }
 .history__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 40px; margin-bottom: 32px; }
-.archive { display: grid; grid-template-columns: 1.15fr 1fr 1fr 1.15fr; gap: 12px; }
+.archive { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.archive figure:nth-child(3) img { scale: 1.24; }
 .archive figure { overflow: hidden; aspect-ratio: 4 / 3; background: var(--ink-800); }
 .archive img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: transform 1.2s var(--ease); }
 .archive figure:hover img { transform: scale(1.05); }
@@ -535,7 +536,7 @@ main:focus { outline: none; }
 .tests li::before { content: counter(t, decimal-leading-zero); font: 500 .74rem var(--f-mono); color: var(--accent); padding-top: .28em; }
 
 /* ---------- 15. Sürdürülebilirlik ---------- */
-.goals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.goals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
 .goal { display: grid; gap: 8px; align-content: start; padding: clamp(22px, 2.4vw, 32px); background: var(--ink-900); min-height: 220px; transition: background .3s; }
 .goal:hover { background: var(--ink-850); }
 .goal .ic { width: 28px; height: 28px; color: var(--red-400); margin-bottom: 20px; }
@@ -558,7 +559,9 @@ main:focus { outline: none; }
 .career__l { position: sticky; top: calc(var(--hdr-h) + 32px); display: grid; gap: 22px; justify-items: start; }
 .career__l > p:not(.eyebrow) { color: var(--mute); max-width: 56ch; font-size: 1.1rem; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chips li { font: 500 .74rem var(--f-mono); letter-spacing: .08em; text-transform: uppercase; padding: 8px 12px; border: 1px solid var(--line); }
+.chips { gap: 6px 0; }
+.chips li { font: 500 .78rem var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--fg); }
+.chips li:not(:last-child)::after { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 14px; vertical-align: middle; background: var(--accent); transform: rotate(45deg); }
 .career__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
 
 .acc__t { font: 500 .78rem var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--mute); margin-bottom: 14px; }
@@ -660,12 +663,12 @@ main:focus { outline: none; }
   position: relative; display: grid; place-items: center; margin-top: clamp(40px, 5vw, 72px);
   height: clamp(340px, 36vw, 500px); overflow: hidden; border: 1px solid var(--line); text-align: center;
   background:
-    linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px) 0 0 / 100% 40px,
-    linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px) 0 0 / 40px 100%,
-    radial-gradient(60% 90% at 50% 50%, rgba(227, 35, 27, .22), transparent 70%),
+    radial-gradient(70% 90% at 50% 50%, rgba(8, 9, 11, .55), rgba(8, 9, 11, .88)),
+    url("https://ascelik.com/wp-content/uploads/2019/07/2019-1030x613.jpg") center / cover no-repeat,
     var(--ink-850);
 }
 .map__in { position: relative; display: grid; gap: 16px; justify-items: center; padding: 24px; }
+.map__in h3 { font: 600 clamp(1.6rem, 3vw, 2.4rem)/1 var(--f-display); text-transform: uppercase; color: #fff; }
 .map__in p { font: 500 .78rem var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--steel-200); }
 .map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .map iframe:focus-visible { outline-offset: -3px; }
@@ -783,3 +786,9 @@ main:focus { outline: none; }
   .btn { width: 100%; }
   .hdr .btn, .career__cta .btn, .mnav .btn { width: auto; }
 }
+
+/* Form gönderildikten sonra yedek yol */
+.form__done { display: grid; gap: 12px; margin-top: 4px; padding: 18px; border: 1px solid var(--line); background: var(--ink-850); }
+.form__done[hidden] { display: none; }
+.form__done p { color: var(--steel-200); line-height: 1.5; }
+.form__done div { display: flex; flex-wrap: wrap; gap: 10px; }
