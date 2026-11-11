@@ -75,7 +75,7 @@
 
   /* ---------- Kaydırınca belirme ---------- */
   const rv = $$('.rv');
-  if (hasIO && !reduce.matches) {
+  if (hasIO) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
         if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
@@ -102,7 +102,7 @@
     requestAnimationFrame(tick);
   };
 
-  if (hasIO && !reduce.matches) {
+  if (hasIO) {
     // Son değerden sıfıra "zıplama" olmasın diye baştan sıfırla (JS yoksa HTML'deki son değer görünür)
     counters.forEach((el) => { el.textContent = nf.format(0); });
     const cio = new IntersectionObserver((entries) => {
@@ -185,7 +185,7 @@
   /* ---------- Hareket denetimi: hero videosu + kayan şerit + nabız noktası ---------- */
   const heroVideo = $('.hero__video');
   const pauseBtn = $('[data-hero-pause]');
-  let motionPaused = reduce.matches || saver;
+  let motionPaused = saver;
   let heroInView = true;
 
   const applyMotion = () => {

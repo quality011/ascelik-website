@@ -718,14 +718,6 @@ main:focus { outline: none; }
 .js .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--i, 0) * 70ms); }
 .js .rv.is-in { opacity: 1; transform: none; }
 
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; }
-  .marquee__track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; row-gap: 12px; }
-  .marquee__track > [data-dup] { display: none; }
-  .js .rv { opacity: 1; transform: none; }
-  .js .bars__b i { transform: none; }
-}
 
 /* ---------- 22. Duyarlı düzen ---------- */
 @media (max-width: 1180px) {
